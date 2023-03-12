@@ -1,0 +1,42 @@
+version: '3.9'
+
+networks:
+  # This is the default network. It is used for normal inter-container
+  # communications.
+  default:
+    driver: bridge
+    ipam:
+      driver: default
+  # This special network is configured so that the local metadata
+  # service can bind to the specific IP address that ECS uses
+  # in production
+  cloud_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: "169.254.162.0/24"
+          gateway: 169.254.162.1
+
+services:
+  localstack:
+    image: localstack/localstack:latest
+    environment:
+      - SERVICES=dynamodb,lambda,kinesis,s3,cloudwatch,logs,events
+      - REMOVE_CONTAINERS_ON_LAMBDA_TERMINATE=true
+      - LAMBDA_REMOVE_CONTAINERS=false
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - DEFAULT_REGION=us-east-1
+      - DEBUG=1
+      - AWS_DEFAULT_REGION=us-east-1
+      - DATA_DIR=/tmp/localstack/data
+      - HOSTNAME_EXTERNAL=localstack
+    ports:
+      - "4566:4566"
+      - "4599:4599"
+      - "4571:4571"
+      - "44177:44177"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    privileged: true
+    networks:
+      cloud_network:

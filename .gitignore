@@ -1,0 +1,17 @@
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+node_modules/
+.serverless/
+
+### IntelliJ IDEA ###
+.idea/
+out/
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store

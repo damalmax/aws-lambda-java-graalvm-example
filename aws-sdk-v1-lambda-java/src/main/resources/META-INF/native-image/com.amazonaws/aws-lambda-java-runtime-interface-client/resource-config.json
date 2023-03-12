@@ -1,0 +1,28 @@
+{
+  "resources": {
+    "includes": [
+      {
+        "pattern": "\\Qaarch64/aws-lambda-runtime-interface-client.glibc.so\\E"
+      },
+      {
+        "pattern": "\\Qaarch64/aws-lambda-runtime-interface-client.musl.so\\E"
+      },
+      {
+        "pattern": "\\Qx86_64/aws-lambda-runtime-interface-client.glibc.so\\E"
+      },
+      {
+        "pattern": "\\Qx86_64/aws-lambda-runtime-interface-client.musl.so\\E"
+      },
+      {
+        "pattern": "\\Qcom/amazonaws/partitions/endpoints.json\\E"
+      },
+      {
+        "pattern": "\\Qcom/amazonaws/internal/config/awssdk_config_default.json\\E"
+      },
+      {
+        "pattern": "\\Qcom/amazonaws/sdk/versionInfo.properties\\E"
+      }
+    ]
+  },
+  "bundles": []
+}
